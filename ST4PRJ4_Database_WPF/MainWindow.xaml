@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
-    </Grid>
+        <StackPanel >
+            <Image x:Name="AddImage" Height="300" Width="300" Margin="-400,20,0,20" />
+            <Button Content="Add" Margin="-500,0,0,0" Height="23" Name="AddButton" Width="100" Click="AddButton_Click"/>
+            <Button Content="Load" Margin="-200,-25,0,0" Height="23" Name="LoadButton" Width="100" Click="LoadButton_Click"/>
+        </StackPanel>
+
+        <StackPanel >
+            <Image x:Name="ShowImage" Height="300" Width="300" Margin="400,20,0,20" />
+            <Button Content="Show" Margin="500,0,0,0" Height="23" Name="ShowButton" Width="100" Click="ShowButton_Click"/>
+            
+        </StackPanel>
+</Grid>
 </Window>
