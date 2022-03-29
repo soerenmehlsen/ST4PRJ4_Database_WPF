@@ -16,7 +16,12 @@
         <StackPanel >
             <Image x:Name="ShowImage" Height="300" Width="300" Margin="400,20,0,20" />
             <Button Content="Show" Margin="500,0,0,0" Height="23" Name="ShowButton" Width="100" Click="ShowButton_Click"/>
-            
+        </StackPanel>
+
+        <StackPanel >
+            <Button Content="Open audio" Margin="-500,380,0,0" Height="23" Name="AudioButton" Width="100" Click="AudioButton_Click"/>
+            <Button Content="Upload Audio" Margin="-400,-25,-200,0" Height="23" Name="UploadAudioButton" Width="100" Click="UploadAudioButton_Click"/>
+            <Button Content="Get Audio" Margin="300,-25,-200,0" Height="23" Name="GetAudioButton" Width="100" Click="GetAudioButton_Click"/>
         </StackPanel>
 </Grid>
 </Window>
