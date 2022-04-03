@@ -35,7 +35,7 @@ namespace ST4PRJ4_Database_WPF
         private byte[] output;
         private MediaPlayer mediaPlayer = new MediaPlayer();
 
-        private void LoadButton_Click(object sender, RoutedEventArgs e) //Click on the load button
+        private void LoadButton_Click(int imgNumber, object sender, RoutedEventArgs e) //Click on the load button
         {
             OpenFileDialog openFile = new OpenFileDialog(); //create object for Filedialog
             
@@ -69,8 +69,15 @@ namespace ST4PRJ4_Database_WPF
             //Define image parameter
             command.Parameters.AddWithValue("@image", data);
 
+            var number = 0; // todo
+
+            var firstName = ""; //todo
+
+            var lastName = ""; //todo
+
+
             //query
-            command.CommandText = "INSERT INTO Test_table(PersonID, FirstName, LastName, Image) VALUES(4, 'Magnus', 'Andersen', @image)"; //Insert commandtext to database
+            command.CommandText = $"INSERT INTO Test_table(PersonID, FirstName, LastName, Image) VALUES({number}, {firstName}, {lastName}, {data})"; //Insert commandtext to database
 
             if (command.ExecuteNonQuery() > 0) //Check if the command get executed to the database
             {
@@ -94,7 +101,9 @@ namespace ST4PRJ4_Database_WPF
 
             SqlCommand command = connection.CreateCommand();
 
-            command.CommandText = "Select Image from Test_table WHERE PersonID=4";
+            var number = 0; // todo
+
+            command.CommandText = $"Select Image from Test_table WHERE PersonID={number}";
 
             dataReader = command.ExecuteReader();
 
@@ -157,8 +166,11 @@ namespace ST4PRJ4_Database_WPF
             //Define sound parameter
             command.Parameters.AddWithValue("@sound", data);
 
+
+            var number = 0; // todo
+
             //query
-            command.CommandText = "INSERT INTO Test_table(PersonID, Sound) VALUES(5, @sound)"; //Insert commandtext to database
+            command.CommandText = $"INSERT INTO Test_table(PersonID, Sound) VALUES({number}, {data})"; //Insert commandtext to database
 
             if (command.ExecuteNonQuery() > 0) //Check if the command get executed to the database
             {
@@ -183,7 +195,9 @@ namespace ST4PRJ4_Database_WPF
 
             SqlCommand command = connection.CreateCommand();
 
-            command.CommandText = "Select Sound from Test_table WHERE PersonID=5"; // Getting the sound from PersonID 5
+            var number = 0; // todo
+
+            command.CommandText = $"Select Sound from Test_table WHERE PersonID={number}"; // Getting the sound from PersonID 5
 
             dataReader = command.ExecuteReader(); // Execute the command text to the database
 
