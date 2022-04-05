@@ -66,11 +66,15 @@ namespace ST4PRJ4_Database_WPF
 
             data = File.ReadAllBytes(imagePath); //Reads the content of the audio file and converting it to byte array
 
-            //Define image parameter
-            command.Parameters.AddWithValue("@image", data);
+
+            var imageBlob = Encoding.ASCII.GetString(data); // Convert to blob
+            
+
+            ////Define image parameter
+            //command.Parameters.AddWithValue("@image", imageBlob);
 
             //query
-            command.CommandText = "INSERT INTO Test_table(PersonID, FirstName, LastName, Image) VALUES(4, 'Magnus', 'Andersen', @image)"; //Insert commandtext to database
+            command.CommandText = $"INSERT INTO Test_table(PersonID, FirstName, LastName, Image) VALUES(7, 'Magnus', 'Andersen', '{imageBlob}')"; //Insert commandtext to database
 
             if (command.ExecuteNonQuery() > 0) //Check if the command get executed to the database
             {
@@ -94,19 +98,22 @@ namespace ST4PRJ4_Database_WPF
 
             SqlCommand command = connection.CreateCommand();
 
-            command.CommandText = "Select Image from Test_table WHERE PersonID=4";
+            command.CommandText = "Select Image from Test_table WHERE PersonID=6";
 
             dataReader = command.ExecuteReader();
+            string returnString =
+                Convert.ToString(dataReader.GetValue(0));
+            var DATA = Encoding.ASCII.GetBytes(returnString);
 
-
-            while (dataReader.Read())
-            {
-                output = (byte[])dataReader.GetValue(0);
-            }
+            //while (dataReader.Read())
+            //{
+            //    output = (byte[])dataReader.GetValue(0);
+            //}
 
             connection.Close();
 
-            Stream streamObj = new MemoryStream(output);
+
+            Stream streamObj = new MemoryStream(DATA);
             BitmapImage bitObj = new BitmapImage();
             
             bitObj.BeginInit();

@@ -1,0 +1,1 @@
+﻿INSERT TABLE Test_table DROP COLUMN Sound
