@@ -67,7 +67,7 @@ namespace ST4PRJ4_Database_WPF
             data = File.ReadAllBytes(imagePath); //Reads the content of the audio file and converting it to byte array
 
 
-            var imageBlob = Encoding.ASCII.GetString(data); // Convert to blob
+            var imageBlob = ByteArrayToString(data); // Convert to blob
             
 
             ////Define image parameter
@@ -101,14 +101,15 @@ namespace ST4PRJ4_Database_WPF
             command.CommandText = "Select Image from Test_table WHERE PersonID=6";
 
             dataReader = command.ExecuteReader();
-            string returnString =
-                Convert.ToString(dataReader.GetValue(0));
-            var DATA = Encoding.ASCII.GetBytes(returnString);
+            //string returnString =
+            //    Convert.ToString(dataReader.GetValue(0));
+            //var DATA = Encoding.ASCII.GetBytes(returnString);
 
-            //while (dataReader.Read())
-            //{
-            //    output = (byte[])dataReader.GetValue(0);
-            //}
+            while (dataReader.Read())
+            {
+                output = (byte[])dataReader.GetValue(0);
+            }
+
 
             connection.Close();
 
@@ -127,6 +128,11 @@ namespace ST4PRJ4_Database_WPF
             //https://www.c-sharpcorner.com/UploadFile/0f100d/storing-and-retrieving-image-from-sql-server-database-in-wpf/
             //https://www.youtube.com/watch?v=XMhcF-zex6k
             //https://www.youtube.com/watch?v=HIv1_P98Ne8&list=LL&index=2&t=182s
+        }
+
+        public static string ByteArrayToString(byte[] ba)
+        {
+            return BitConverter.ToString(ba).Replace("-", ""); //?? should "-" be removed // Vi bruger denne replace metode til at fjerne hver "-" imellem sig, så vi får en lang string.
         }
 
         private void AudioButton_Click(object sender, RoutedEventArgs e) // Chose the audio file from the computer
